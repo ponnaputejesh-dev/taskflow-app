@@ -11,10 +11,16 @@ const app = express();
 /* ---------- IMPORTANT MIDDLEWARE ORDER ---------- */
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://taskflow-backend-37v4.onrender.com/"],
-    credentials: true,
+    origin: [
+      "http://localhost:3000",
+      "https://taskflow-frontend-delta.vercel.app"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
   })
 );
+
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
 
