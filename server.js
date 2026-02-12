@@ -14,21 +14,16 @@ const allowedOrigins = [
   "https://taskflow-frontend-delta.vercel.app"
 ];
 
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      // allow requests with no origin (postman/mobile apps)
-      if (!origin) return callback(null, true);
+app.use(cors({
+  origin: true,
+  credentials: true,
+  methods: ["GET","POST","PUT","DELETE","OPTIONS"],
+  allowedHeaders: ["Content-Type","Authorization"]
+}));
 
-      if (allowedOrigins.indexOf(origin) !== -1 || origin.includes("vercel.app")) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true,
-  })
-);
+// important for preflight
+app.options("*", cors());
+
 
 
 app.use(express.json({ limit: "10mb" }));
