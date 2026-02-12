@@ -11,7 +11,7 @@ const app = express();
 /* ---------- IMPORTANT MIDDLEWARE ORDER ---------- */
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://taskflow-frontend.vercel.app"],
+    origin: ["http://localhost:3000", "https://taskflow-backend-37v4.onrender.com/"],
     credentials: true,
   })
 );
